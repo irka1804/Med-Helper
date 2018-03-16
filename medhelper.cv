@@ -1,0 +1,139 @@
+<My_manager>:
+    PatientScreen:
+        name: 'patient'
+    SymptomScreen:
+        name: 'symptom1'
+        Localization:
+    SymptomScreen:
+        name: 'symptom2'
+        NatureOfPain:
+    SymptomScreen:
+        name: 'symptom3'
+        DateOfAppearance:
+            size_hint: (1, 0.8)
+            pos_hint: {'top': 1}
+    SaveScreen:
+        name: 'save'
+    SuccessSaveScreen:
+        name: 'success'
+
+
+<Label>
+    font_size: '20dp'
+
+<TextInput>:
+    font_size: '20dp'
+    multiline: False
+
+<PatientScreen>:
+    Button:
+        size_hint: (0.4, 0.15)
+        pos_hint: {'right': 1, 'y': 0}
+        text: 'Continue'
+        
+        on_press: root.manager.transition.direction = 'left'
+        on_press: root.manager.current = root.manager.next()
+    
+    GridLayout:
+        size_hint: (0.6, 0.6)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        rows: 4
+        orientation: 'horizontal'
+        Label:
+            text: 'Enter name'
+        TextInput:
+        Label:
+            text: 'Enter surname'
+        TextInput:
+        
+
+<SymptomScreen>:
+    Button:
+        size_hint: (0.4, 0.15)
+        pos_hint: {'x': 0, 'y': 0}
+        text: 'Back'
+        on_press: root.manager.transition.direction = 'right'
+        on_press: root.manager.current = root.manager.previous()
+            
+    Button:
+        size_hint: (0.4, 0.15)
+        pos_hint: {'right': 1, 'y': 0}
+        text: 'Continue'
+        on_press: root.manager.transition.direction = 'left'
+        on_press: root.manager.current = root.manager.next()
+ 
+
+<SaveScreen>:
+    Button:
+        size_hint: (0.4, 0.15)
+        pos_hint: {'x': 0, 'y': 0}
+        text: 'Back'
+        on_press: root.manager.transition.direction = 'right'
+        on_press: root.manager.current = root.manager.previous()
+
+    Button:
+        size_hint: (0.4, 0.2)
+        pos_hint: {'center_x': 0.5, 'y': 0.5}
+        text: 'Save patient'
+        on_press: root.manager.transition.direction = 'left'
+        on_press: root.manager.current = root.manager.next()
+
+
+<SuccessSaveScreen@Screen>:
+    Label:
+        size_hint: (0.4, 0.15)
+        pos_hint: {'center_x': 0.5, 'y': 0.5}
+        text: 'The saving was successful'
+    Button:
+        size_hint: (0.4, 0.15)
+        pos_hint: {'center_x': 0.5, 'top': 0.5}
+        text: 'OK'
+        on_press: root.manager.current = 'patient'
+
+
+<Localization@BoxLayout>:
+    size_hint: (0.6, 0.6)
+    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+    orientation: 'vertical'
+
+    Label:
+        text: 'Indicate the location of the headache'
+
+    GridLayout:
+        cols: 2
+        CheckBox:
+        Label:
+            text: 'The temporal lobe'
+        CheckBox:
+        Label:
+            text: 'Frontal lobe'
+        CheckBox:
+        Label:
+            text: 'Hindhead'
+
+
+<NatureOfPain@BoxLayout>:
+    size_hint: (0.6, 0.6)
+    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+    orientation: 'vertical'
+
+    Label:
+        text: 'Indicate the nature of pain'
+
+    GridLayout:
+        cols: 2
+        CheckBox:
+        Label:
+            text: 'Throbbing pain'
+        CheckBox:
+        Label:
+            text: 'Constant pain'
+       
+
+<DateOfAppearance@BoxLayout>:
+    orientation: 'vertical'
+    Label:
+        text: 'Choose the date of occurrence of pain'
+        size_hint: 1, 0.2
+        pos_hint: {'center_x': 0.5}
+    CalendarWidget:
