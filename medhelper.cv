@@ -2,14 +2,17 @@
     PatientScreen:
         name: 'patient'
     SymptomScreen:
-        name: 'symptom1'
+        name: 'localization'
         Localization:
+            id: localization
     SymptomScreen:
-        name: 'symptom2'
+        name: 'nature'
         NatureOfPain:
+            id: nature
     SymptomScreen:
-        name: 'symptom3'
+        name: 'appearance'
         DateOfAppearance:
+            id: appearance
             size_hint: (1, 0.8)
             pos_hint: {'top': 1}
     SaveScreen:
@@ -33,7 +36,7 @@
         
         on_press: root.manager.transition.direction = 'left'
         on_press: root.manager.current = root.manager.next()
-    
+        on_press: root.set_name()
     GridLayout:
         size_hint: (0.6, 0.6)
         pos_hint: {'center_x': 0.5, 'center_y': 0.6}
@@ -42,10 +45,12 @@
         Label:
             text: 'Enter name'
         TextInput:
+            id: name
         Label:
             text: 'Enter surname'
         TextInput:
-        
+            id: surname
+
 
 <SymptomScreen>:
     Button:
@@ -59,9 +64,9 @@
         size_hint: (0.4, 0.15)
         pos_hint: {'right': 1, 'y': 0}
         text: 'Continue'
+        on_press: root.parent.set_symptom(root.manager.current); root.manager.current = root.manager.next()
         on_press: root.manager.transition.direction = 'left'
-        on_press: root.manager.current = root.manager.next()
- 
+
 
 <SaveScreen>:
     Button:
@@ -76,7 +81,7 @@
         pos_hint: {'center_x': 0.5, 'y': 0.5}
         text: 'Save patient'
         on_press: root.manager.transition.direction = 'left'
-        on_press: root.manager.current = root.manager.next()
+        on_press: root.save(); root.manager.current = root.manager.next()
 
 
 <SuccessSaveScreen@Screen>:
@@ -102,12 +107,15 @@
     GridLayout:
         cols: 2
         CheckBox:
+            id: temporal
         Label:
             text: 'The temporal lobe'
         CheckBox:
+            id: frontal
         Label:
             text: 'Frontal lobe'
         CheckBox:
+            id: hindhead
         Label:
             text: 'Hindhead'
 
@@ -123,9 +131,11 @@
     GridLayout:
         cols: 2
         CheckBox:
+            id: throbbing
         Label:
             text: 'Throbbing pain'
         CheckBox:
+            id: constant
         Label:
             text: 'Constant pain'
        
@@ -137,3 +147,4 @@
         size_hint: 1, 0.2
         pos_hint: {'center_x': 0.5}
     CalendarWidget:
+        id: appearance
