@@ -27,7 +27,7 @@ sudo pip install KivyCalendar
 ```
 sudo python -m pip install pymongo
 ```
-Теперь можно запускать приложение
+Теперь можно запускать приложение (запусить команду из каталога с файлами)
 ```
 python main.py
 ```
