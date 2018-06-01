@@ -33,6 +33,7 @@ class SymptomScreen(Screen):
 
 class SaveScreen(Screen):
     def save(self):
+        patient.pop("_id", 0);
         coll.insert_one(patient)
 
 class My_manager(ScreenManager):
