@@ -33,3 +33,21 @@ sudo python -m pip install pymongo
 ```
 python main.py
 ```
+### Создание APK файла и запуск на Android
+
+Установка buildozer
+```
+git clone https://github.com/kivy/buildozer.git
+cd buildozer
+sudo python2.7 setup.py install
+```
+В папке с проектом нужно запустить команду
+```
+buildozer init
+```
+В этой папке появится файл buildozer.spec. Его следует отредактировать, выставив нужные параметры.
+Дальше выполнить команду
+```
+buildozer android debug deploy
+```
+Создалась папка bin. В ней лежит APK файл, который надо перенести и запустить на Android
