@@ -21,11 +21,21 @@
         name: 'success'
 
 
-<Label>
-    font_size: '20dp'
+<MyLabel@Label>
+    font_size: '17dp'
+    text_size: self.size
+    halign: 'center'
+    valign: 'center'
+    padding: ('2dp', '2dp')
+
+<Button>
+    text_size: self.size
+    padding: ('1dp', '1dp')
+    halign: 'center'
+    valign: 'center'
 
 <TextInput>:
-    font_size: '20dp'
+    font_size: '15dp'
     multiline: False
 
 <PatientScreen>:
@@ -37,16 +47,17 @@
         on_press: root.manager.transition.direction = 'left'
         on_press: root.manager.current = root.manager.next()
         on_press: root.set_name()
+
     GridLayout:
         size_hint: (0.6, 0.6)
         pos_hint: {'center_x': 0.5, 'center_y': 0.6}
         rows: 4
         orientation: 'horizontal'
-        Label:
+        MyLabel:
             text: 'Enter name'
         TextInput:
             id: name
-        Label:
+        MyLabel:
             text: 'Enter surname'
         TextInput:
             id: surname
@@ -85,64 +96,64 @@
 
 
 <SuccessSaveScreen@Screen>:
-    Label:
-        size_hint: (0.4, 0.15)
+    MyLabel:
+        size_hint: (0.5, 0.2)
         pos_hint: {'center_x': 0.5, 'y': 0.5}
         text: 'The saving was successful'
     Button:
-        size_hint: (0.4, 0.15)
+        size_hint: (0.5, 0.15)
         pos_hint: {'center_x': 0.5, 'top': 0.5}
         text: 'OK'
         on_press: root.manager.current = 'patient'
 
 
 <Localization@BoxLayout>:
-    size_hint: (0.6, 0.6)
-    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+    size_hint: (min(1, 400.0 / self.parent.size[0]), 0.7)
+    pos_hint: {'center_x': 0.5, 'center_y': 0.7}
     orientation: 'vertical'
 
-    Label:
+    MyLabel:
         text: 'Indicate the location of the headache'
 
     GridLayout:
         cols: 2
         CheckBox:
             id: temporal
-        Label:
-            text: 'The temporal lobe'
+        MyLabel:
+            text: 'Temporal lobe'
         CheckBox:
             id: frontal
-        Label:
+        MyLabel:
             text: 'Frontal lobe'
         CheckBox:
             id: hindhead
-        Label:
+        MyLabel:
             text: 'Hindhead'
 
 
 <NatureOfPain@BoxLayout>:
-    size_hint: (0.6, 0.6)
-    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+    size_hint: (min(1, 400.0 / self.parent.size[0]), 0.7)
+    pos_hint: {'center_x': 0.5, 'center_y': 0.7}
     orientation: 'vertical'
 
-    Label:
+    MyLabel:
         text: 'Indicate the nature of pain'
 
     GridLayout:
         cols: 2
         CheckBox:
             id: throbbing
-        Label:
+        MyLabel:
             text: 'Throbbing pain'
         CheckBox:
             id: constant
-        Label:
+        MyLabel:
             text: 'Constant pain'
        
 
 <DateOfAppearance@BoxLayout>:
     orientation: 'vertical'
-    Label:
+    MyLabel:
         text: 'Choose the date of occurrence of pain'
         size_hint: 1, 0.2
         pos_hint: {'center_x': 0.5}
